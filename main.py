@@ -1,6 +1,9 @@
 import argparse
 import logging
 import os
+from typing import Dict, List, Optional
+
+import pandas as pd
 
 from data import fetch_multiple_symbols
 from analysis import add_technical_indicators, plot_price_and_sma
@@ -12,7 +15,13 @@ logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger(__name__)
 
 
-def analyze_symbol(symbol, df, forecast_days=5, save_folder=None, plot=False):
+def analyze_symbol(
+    symbol: str,
+    df: pd.DataFrame,
+    forecast_days: int = 5,
+    save_folder: Optional[str] = None,
+    plot: bool = False,
+) -> pd.DataFrame:
     df = add_technical_indicators(df)
     logger.info("\n=== %s ===", symbol)
     logger.info("Latest close: %0.2f", df["Close"].iloc[-1])
@@ -45,14 +54,16 @@ def main():
     parser.add_argument("--plot", action="store_true", help="Show a plot for each symbol")
     args = parser.parse_args()
 
-    symbols = args.symbols or TOP_US_STOCKS
+    symbols: List[str] = args.symbols or TOP_US_STOCKS
     logger.info("Fetching %s symbols from %s", len(symbols), args.source)
-    symbols_data = fetch_multiple_symbols(symbols, source=args.source, period=args.period, interval=args.interval)
+    symbols_data: Dict[str, pd.DataFrame] = fetch_multiple_symbols(
+        symbols, source=args.source, period=args.period, interval=args.interval
+    )
 
-    save_folder = os.path.join("data", "prices") if args.save_csv else None
+    save_folder: Optional[str] = os.path.join("data", "prices") if args.save_csv else None
 
     for symbol, df in symbols_data.items():
-        if df is None or df.empty:
+        if df.empty:
             logger.warning("No data for %s, skipping", symbol)
             continue
         analyze_symbol(symbol, df, forecast_days=args.forecast_days, save_folder=save_folder, plot=args.plot)

@@ -1,7 +1,14 @@
 import matplotlib.pyplot as plt
+import pandas as pd
+from typing import Optional, Sequence
 
 
-def plot_price_and_sma(df, symbol: str, windows=(20, 50), save_path: str = None) -> None:
+def plot_price_and_sma(
+    df: pd.DataFrame,
+    symbol: str,
+    windows: Sequence[int] = (20, 50),
+    save_path: Optional[str] = None,
+) -> None:
     plt.figure(figsize=(10, 5))
     plt.plot(df["Date"], df["Close"], label="Close", linewidth=1.5)
     for window in windows:

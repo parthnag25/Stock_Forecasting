@@ -1,5 +1,5 @@
 import logging
-from typing import List
+from typing import Dict, List
 
 import pandas as pd
 import yfinance as yf
@@ -28,9 +28,9 @@ def fetch_price_history(symbol: str, source: str = "yahoo", period: str = "1y", 
     return fetch_price_history(symbol, source="yahoo", period=period, interval=interval)
 
 
-def fetch_multiple_symbols(symbols: List[str], source: str = "yahoo", period: str = "1y", interval: str = "1d") -> dict:
+def fetch_multiple_symbols(symbols: List[str], source: str = "yahoo", period: str = "1y", interval: str = "1d") -> Dict[str, pd.DataFrame]:
     """Fetch historical data for multiple symbols."""
-    results = {}
+    results: Dict[str, pd.DataFrame] = {}
     for symbol in symbols:
         try:
             results[symbol] = fetch_price_history(symbol, source=source, period=period, interval=interval)
