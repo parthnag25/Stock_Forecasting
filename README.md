@@ -1,12 +1,12 @@
 # Stock Forecasting Portfolio Project
 
-A portfolio-ready Python application that demonstrates stock analytics, technical indicators, forecasting, and interactive visualization using Streamlit.
+A portfolio-ready Python application that demonstrates stock analytics, technical indicators, and interactive visualization using Streamlit.
 
 ![Project Dashboard](newplot.png)
 
 ## Business Problem
 
-Investors and analysts need a fast way to understand stock momentum, risk, and short-term outlooks using historical price data. This project solves that problem by combining data retrieval, technical analysis, and simple forecasting models into a single interactive dashboard.
+Investors and analysts need a fast way to understand stock momentum, risk, and short-term outlooks using historical price data. This project solves that problem by combining data retrieval, technical analysis, and interactive visualization into a single interactive dashboard.
 
 ## Live Demo
 
@@ -40,9 +40,9 @@ The app allows users to:
 
 | Skill Area | Evidence in Project |
 |---|---|
-| Python Programming | Modular scripts for data loading, analysis, forecasting, and dashboarding |
+| Python Programming | Modular scripts for data loading, analysis, and dashboarding |
 | Data Analytics | Historical stock price analysis, RSI, volatility, and moving averages |
-| Financial Analysis | Momentum indicators, risk metrics, and baseline forecast interpretation |
+| Financial Analysis | Momentum indicators, risk metrics, and trend interpretation |
 | Dashboard Development | Interactive Streamlit interface with charts and CSV export |
 | Software Engineering | Organized folder structure, reusable functions, requirements file, and GitHub Actions CI |
 | Deployment | Public Streamlit app connected to GitHub repository |
@@ -83,7 +83,7 @@ Data Cleaning and Feature Engineering
    ↓
 Technical Indicator Calculation
    ↓
-Forecast Generation
+Indicator visualization
    ↓
 Streamlit Dashboard
    ↓
@@ -98,16 +98,15 @@ The project demonstrates an end-to-end financial analytics workflow:
 - computed moving-average trend indicators to identify short-term momentum
 - calculated RSI to flag potential overbought or oversold conditions
 - estimated rolling volatility to support basic risk assessment
-- generated baseline forecasts using naive and moving-average methods
 - delivered results through an interactive Streamlit dashboard with CSV export
 
-This project is not intended to provide investment advice. Its purpose is to demonstrate financial data engineering, analytics, forecasting logic, and dashboard deployment.
+This project is not intended to provide investment advice. Its purpose is to demonstrate financial data engineering, analytics, and dashboard deployment.
 
 ## Limitations
 
-- Forecasts are intentionally simple and not production-grade
+- Forecast generation is not included in this version
 - Only one data source is fully supported (`yahoo`)
-- No backtesting or forecast validation metrics are currently included
+- No backtesting or validation metrics are currently included
 - Models do not account for macroeconomic factors or corporate events
 
 ## Future Improvements

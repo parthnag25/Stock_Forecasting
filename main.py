@@ -60,7 +60,7 @@ def main():
         if df.empty:
             logger.warning("No data for %s, skipping", symbol)
             continue
-        analyze_symbol(symbol, df, forecast_days=args.forecast_days, save_folder=save_folder, plot=args.plot)
+        analyze_symbol(symbol, df, save_folder=save_folder, plot=args.plot)
 
 
 if __name__ == "__main__":
