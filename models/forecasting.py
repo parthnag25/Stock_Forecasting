@@ -1,5 +1,5 @@
+import numpy as np
 import pandas as pd
-from sklearn.metrics import mean_absolute_error, mean_absolute_percentage_error, mean_squared_error
 
 
 def _business_days_forward(start_date: pd.Timestamp, days: int) -> pd.DatetimeIndex:
@@ -54,9 +54,9 @@ def model_performance_metrics(df: pd.DataFrame, window: int = 5, lookback: int =
     for model_name, predictions in [("Naive", eval_df["Naive"]), ("Moving Average", eval_df["MA_Forecast"])]:
         actual = eval_df["Close"].values
         pred = predictions.values
-        mae = mean_absolute_error(actual, pred)
-        rmse = mean_squared_error(actual, pred, squared=False)
-        mape = mean_absolute_percentage_error(actual, pred) * 100
+        mae = np.mean(np.abs(actual - pred))
+        rmse = np.sqrt(np.mean((actual - pred) ** 2))
+        mape = np.mean(np.abs((actual - pred) / np.where(actual == 0, 1, actual))) * 100
         metrics.append(
             {
                 "Model": model_name,
